@@ -11,5 +11,5 @@ hyp = [0.05;1]; %defining hyper parameters
 K1 = kernel_matrix(X,hyp(1),hyp(2));
 K2 = kernel_matrix_unopt(X,hyp(1),hyp(2));
 
-norm(K1-K2)
-t = sum(K1-K2 ~= 0)
+norm(K1-K2);
+t = sum(K1-K2 ~= 0);
