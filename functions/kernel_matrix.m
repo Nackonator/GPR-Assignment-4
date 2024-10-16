@@ -1,4 +1,16 @@
 function Kernel = kernel_matrix(X, sigma_l, sigma_f)
+    % % non-optimized version
+    % N = size(X, 1);
+    % Kernel = zeros(N, N);
+    % size(Kernel)
+    % for i = 1:N
+    %     for j = i:N
+    %         val = sigma_f^2 * exp(-(norm(X(i,:) - X(j,:))^2)/(2*sigma_l^2));
+    %         Kernel(i,j) = val;
+    %         Kernel(j,i) = val;
+    %     end
+    % end
+
     % optimized version of the for loop
     N = size(X, 1);
     % permute X to [3,2,1] to make use of broadcasting when subtracting
