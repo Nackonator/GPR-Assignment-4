@@ -1,5 +1,5 @@
 function Kernel = kernel_matrix(X, sigma_l, sigma_f)
-    % % non-optimized version
+    % non-optimized version
     % N = size(X, 1);
     % Kernel = zeros(N, N);
     % size(Kernel)
