@@ -21,10 +21,13 @@ function[mean, covariance_matrix, K_X_X, inverse_time, mean_time, covariance_tim
 
     pre_timer = tic;
     pre = K_Xstar_X * K_X_X_inv;
+    clear("K_X_X_inv");
+    clear("K_Xstar_X");
     pre_allocation_time = toc(pre_timer);
 
     mean_timer = tic;
     mean = pre * y;
+    clear("y");
     mean_time = toc(mean_timer);
 
     cov_timer = tic;
