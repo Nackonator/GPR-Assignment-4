@@ -17,17 +17,17 @@ function[mean, covariance_matrix, K_X_X, inverse_time, mean_time, covariance_tim
     % various outputs.
     inv_timer = tic;
     K_X_X_inv = inv(K_X_X);
-    inverse_time = toc(inv_timer)  % Stops the specific timer
+    inverse_time = toc(inv_timer);  % Stops the specific timer
 
     pre_timer = tic;
     pre = K_Xstar_X * K_X_X_inv;
-    pre_allocation_time = toc(pre_timer)
+    pre_allocation_time = toc(pre_timer);
 
     mean_timer = tic;
     mean = pre * y;
-    mean_time = toc(mean_timer)
+    mean_time = toc(mean_timer);
 
     cov_timer = tic;
     covariance_matrix = K_Xstar_Xstar - pre * K_X_Xstar;
-    covariance_time = toc(cov_timer)
+    covariance_time = toc(cov_timer);
 end
