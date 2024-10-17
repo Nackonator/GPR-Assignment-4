@@ -27,7 +27,7 @@ function[mean, covariance_matrix, K_X_X, inverse_time, mean_time, covariance_tim
 
     mean_timer = tic;
     mean = pre * y;
-    clear("y");
+    % clear("y");
     mean_time = toc(mean_timer);
 
     cov_timer = tic;
