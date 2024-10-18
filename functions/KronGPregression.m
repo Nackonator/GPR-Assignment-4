@@ -3,6 +3,8 @@ function[mean, covariance_matrix, K_X_X, inverse_time, mean_time, covariance_tim
     N_X = size(X, 1);
     N_Xstar = size(Xstar, 1);
     sigma_l = hyp(1); sigma_f = hyp(2);
+    mean = zeros(N_Xstar, 1);  % Preallocating mean vector
+    covariance_matrix = zeros(N_Xstar, N_Xstar);  % Preallocating covariance matrix
     
     %First making a large kernel matrix of all the inputs (train+test)
     joint_kernel_matrix = kernel_matrix([X; Xstar], sigma_l, sigma_f);
