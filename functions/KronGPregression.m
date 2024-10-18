@@ -18,12 +18,15 @@ function[mean, covariance_matrix, K_X_X, inverse_time, mean_time, covariance_tim
     inv_timer = tic;
 
     % method 1: use kronecker products
-    K_X_X_inv = kron(inv(K3), inv(K2));
-    K_X_X_inv = kron(K_X_X_inv, inv(K1));
+    K_X_X_inv = kron(inv(K3),kron(inv(K2),inv(K1)));
 
     % % method 2: use tensor trains
-    % TT_kernel_matrices = cell{vec(K1), vec(K2), vec(K3), 0};
-    % K_X_X_inv = TT_reconstruct(TT_kernel_matrices);
+    % TT_kernel_matrices = cell{vec(K1), vec(K2), vec(K3), 1e-13};
+    % Ktensor_TT = TT_reconstruct(TT_kernel_matrices);
+    % dim_sz = repelem(N_X^(1/3),6);
+    % Ktensor_TT = reshape(Ktensor_tt_test,dim_sz);
+    % Ktensor_TT = permute(Ktensor_tt_test,[1 3 5 2 4 6]);
+    % K_X_X_inv = reshape(Ktensor_tt_test,[N_X,N_X]);
     
     inverse_time = toc(inv_timer);  % Stops the specific timer
 

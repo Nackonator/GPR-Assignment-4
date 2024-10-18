@@ -4,6 +4,6 @@ K = zeros(length(x));
 
 for i = 1:length(x)
     for j = 1:length(x)
-        K(i,j) = sigma_f^2*exp(-0.5/sigma_l^2 * (x(i)-x(j))^2);
+        K(i,j) = sigma_f*exp(-(x(i)-x(j))^2/(2*sigma_l));
     end
 end
