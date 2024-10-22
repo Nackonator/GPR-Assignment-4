@@ -17,23 +17,23 @@ function[mean, covariance_matrix, K_X_X, inverse_time, mean_time, covariance_tim
 
     % Start specific timers with a handle to time calculation time of
     % various outputs.
-    inv_timer = tic;
-
+    %inv_timer = tic;
     % method 1: use kronecker products
-    K_X_X_inv = kron(inv(K3),kron(inv(K2),inv(K1)));
-    
-    inverse_time = toc(inv_timer);  % Stops the specific timer
+    %K_X_X_inv = kron(inv(K3),kron(inv(K2),inv(K1))); 
+    inverse_time = 0; %toc(inv_timer);  % Stops the specific timer
 
-    pre_timer = tic;
+    %pre_timer = tic;
     %pre = K_Xstar_X * K_X_X_inv;
-    pre_allocation_time = toc(pre_timer);
+    pre_allocation_time = 0;%toc(pre_timer);
+    TT_Kinv{1} = inv(K3);
+    TT_Kinv{2} = inv(K2);
+    TT_Kinv{3} = inv(K1);
 
     mean_timer = tic;
-    %mean = pre * y;
-
+    mean = K_Xstar_X * kron_mvprod(TT_Kinv,y);
     mean_time = toc(mean_timer);
 
     cov_timer = tic;
-    covariance_matrix = K_Xstar_Xstar - pre * K_X_Xstar;
+    covariance_matrix = K_Xstar_Xstar - K_Xstar_X*kron_mmprod(TT_Kinv,K_X_Xstar);
     covariance_time = toc(cov_timer);
 end
