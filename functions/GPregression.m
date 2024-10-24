@@ -1,4 +1,4 @@
-function[mean, covariance_matrix, K_X_X, kernel_time, inverse_time, mean_time, covariance_time, pre_allocation_time] = GPregression(X, y, Xstar, hyp)
+function[mean, covariance_matrix, K_X_X, inverse_time, mean_time, covariance_time,pre_allocation_time] = GPregression(X, y, Xstar, hyp)
     %defining sizes and constants given by input
     N_X = size(X, 1);
     N_Xstar = size(Xstar, 1);
