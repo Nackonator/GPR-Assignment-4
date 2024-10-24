@@ -1,7 +1,7 @@
 function Kernel = kernel_matrix(X, sigma_l, sigma_f)
     % non-optimized version, Is correct (I think)
     N = size(X, 1);
-    Kernel = zeros(N, N);
+    % Kernel = zeros(N, N);
     % for i = 1:N
     %     for j = i:N
     %         val = sigma_f * exp(-(norm(X(i,:) - X(j,:))^2)/(2*sigma_l));

@@ -3,8 +3,6 @@ function[mean, covariance_matrix, K_X_X, inverse_time, mean_time, covariance_tim
     N_X = size(X, 1);
     N_Xstar = size(Xstar, 1);
     sigma_l = hyp(1); sigma_f = hyp(2);
-    mean = zeros(N_Xstar, 1);  % Preallocating mean vector
-    covariance_matrix = zeros(N_Xstar, N_Xstar);  % Preallocating covariance matrix
     
     %First making a large kernel matrix of all the inputs (train+test)
     joint_kernel_matrix = kernel_matrix([X; Xstar], sigma_l, sigma_f);
@@ -20,7 +18,9 @@ function[mean, covariance_matrix, K_X_X, inverse_time, mean_time, covariance_tim
     inv_timer = tic;
 
     % method 1: use kronecker products
-    K_X_X_inv = kron(inv(K3),kron(inv(K2),inv(K1)));
+    K_X_X_inv = kron(inv(K3),kron(inv(K2),inv(K1)));    % can we do it the otherway aroudn too?
+    K_X_X_inv_2 = kron(kron(inv(K3, inv(K2))), inv(K1));
+    assert(norm(K_X_X_inv_2 - K_X_X_inv, 'fro') < 1e-9)
 
     % % method 2: use tensor trains
     % TT_kernel_matrices = cell{vec(K1), vec(K2), vec(K3), 1e-13};
