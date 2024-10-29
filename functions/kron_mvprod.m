@@ -10,7 +10,7 @@ x = b;
 for d = 1:D
     Gd = length(K{d});
     X = reshape(x,Gd,N/Gd);
-    Z = K{d}*X;
+    Z = K{d}\X;
     Z = Z';
     x = vec(Z);
 end

@@ -25,15 +25,19 @@ function[mean, covariance_matrix, K_X_X, inverse_time, mean_time, covariance_tim
     %pre_timer = tic;
     %pre = K_Xstar_X * K_X_X_inv;
     pre_allocation_time = 0;%toc(pre_timer);
-    TT_Kinv{1} = inv(K3);
-    TT_Kinv{2} = inv(K2);
-    TT_Kinv{3} = inv(K1);
+    % TT_Kinv{1} = inv(K3);
+    % TT_Kinv{2} = inv(K2);
+    % TT_Kinv{3} = inv(K1);
+
+    TT_K{1} = K3;
+    TT_K{2} = K2;
+    TT_K{3} = K1;
 
     mean_timer = tic;
-    mean = K_Xstar_X * kron_mvprod(TT_Kinv,y);
+    mean = K_Xstar_X * kron_mvprod(TT_K,y);
     mean_time = toc(mean_timer);
 
     cov_timer = tic;
-    covariance_matrix = K_Xstar_Xstar - K_Xstar_X*kron_mmprod(TT_Kinv,K_X_Xstar);
+    covariance_matrix = K_Xstar_Xstar - K_Xstar_X*kron_mmprod(TT_K,K_X_Xstar);
     covariance_time = toc(cov_timer);
 end

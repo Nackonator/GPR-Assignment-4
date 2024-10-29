@@ -11,7 +11,7 @@ for d = D:-1:1      % Loop backwards from D to 1
     Gd = length(K{d});
     for m = 1:M
         X = reshape(x(:,m),Gd,N/Gd);
-        Z = K{d}*X;
+        Z = K{d}\X;
         Z = Z';
         x(:,m) = vec(Z);
     end
