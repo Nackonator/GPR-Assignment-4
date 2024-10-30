@@ -1,5 +1,5 @@
 %coding equation 5.4
-function K = kernel_matrix_dimension(x, sigma_l, sigma_f)
+function K = GPR_GRID_kernel(x, sigma_l, sigma_f)
 K = zeros(length(x));
 
 for i = 1:length(x)

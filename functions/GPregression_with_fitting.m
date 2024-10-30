@@ -1,4 +1,4 @@
-function[GPmodel, predictions, mean, covariance_matrix, Kernel_train_data] = GPregressionold(X, y, Xstar, hyp)
+function[GPmodel, predictions, mean, covariance_matrix, Kernel_train_data] = GPregression_with_fitting(X, y, Xstar, hyp)
     N_X = size(X, 1);
     N_Xstar = size(Xstar, 1);
 
